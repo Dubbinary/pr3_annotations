@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       >
+    <context:annotation-config />
+    <context:component-scan base-package="www.dubbinary"/>
+
+    <bean id="helloBean" class="pr_binding_components.hello.HelloService"
+        p:name="Arachnid42!"
+    />
+
+    <bean id="duke" class="pr_binding_components.juggler.Juggler">
+        <constructor-arg value="42"/>
+    </bean>
+    <bean id="somePoem" class="pr_binding_components.juggler.SomePoem"/>
+    <bean id="poeticDuke" class="pr_binding_components.juggler.PoeticJuggler">
+        <constructor-arg value="42"/>
+        <constructor-arg ref="somePoem"/>
+    </bean>
+
+    <bean id="theStage" class="pr_binding_components.instrumentalist.Stage"
+          factory-method="getInstance"/>
+    <bean id="saxophone" class="pr_binding_components.instrumentalist.Saxophone"/>
+    <bean id="piano" class="pr_binding_components.instrumentalist.Piano"/>
+    <bean id="kenny" class="pr_binding_components.instrumentalist.Instrumentalist"
+        p:song="Jingle Bells"
+        p:instrument-ref="saxophone"
+            />
+    <bean id="kenny2" class="pr_binding_components.instrumentalist.Instrumentalist"
+        p:song="Rolling stone">
+        <property name="instrument">
+            <bean class="pr_binding_components.instrumentalist.Saxophone"/>
+        </property>
+    </bean>
+
+    <bean id="hank" class="pr_binding_components.onemanband.OneManBand">
+        <property name="instruments">
+            <list>
+                <ref bean="piano"/>
+                <ref bean="saxophone"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="hank2" class="pr_binding_components.onemanband.OneManBandNew">
+        <property name="instruments">
+            <map>
+                <entry key="saxophone" value-ref="saxophone"/>
+                <entry key="piano" value-ref="piano"/>
+            </map>
+        </property>
+    </bean>
+</beans>
