@@ -1,10 +1,12 @@
 package pr_binding_components.juggler;
 
+import org.springframework.stereotype.Component;
 import pr_binding_components.interfaces.Poem;
 
 /**
  * Created by dubbinary on 10.02.15.
  */
+@Component
 public class SomePoem implements Poem {
 
     private static String[] lines= {

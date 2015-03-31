@@ -7,6 +7,7 @@ import pr_binding_components.interfaces.Performer;
 /**
  * Created by dubbinary on 02.03.15.
  */
+
 public class OneManBand implements Performer {
 
     private Collection<Instrument> instruments;

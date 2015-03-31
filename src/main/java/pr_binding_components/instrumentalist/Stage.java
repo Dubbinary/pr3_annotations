@@ -1,8 +1,11 @@
 package pr_binding_components.instrumentalist;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by dubbinary on 17.02.15.
  */
+@Component
 public class Stage {
     private Stage(){}
 
